@@ -1,0 +1,48 @@
+{
+    "name": "daniellefence/inputs",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [
+        "daniellefence",
+        "inputs"
+    ],
+    "homepage": "https://github.com/daniellefence/inputs",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Shane Barron",
+            "email": "sbarron@daniellefence.net",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Daniellefence\\Inputs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Daniellefence\\Inputs\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Daniellefence\\Inputs\\InputsServiceProvider"
+            ],
+            "aliases": {
+                "Inputs": "Daniellefence\\Inputs\\InputsFacade"
+            }
+        }
+    }
+}
