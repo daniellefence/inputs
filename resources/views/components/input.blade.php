@@ -17,6 +17,7 @@
             .trix-button-group--file-tools{
                 display: none !important;
             }
+
         </style>
     @endpush
 
@@ -40,7 +41,7 @@
         <trix-editor input="{{ $name }}" class="min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
     </div>
 @elseif ($variant === 'textarea')
-    <textarea name="{{ $name }}" {{ $attributes->merge(['class' => 'form-textarea']) }}></textarea>
+    <textarea name="{{ $name }}" {{ $attributes->merge(['class' => 'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 sm:text-sm/6']) }}></textarea>
 @elseif ($variant === 'select')
     <select name="{{ $name }}" {{ $attributes->merge(['class' => 'form-select']) }}>
         @foreach ($options as $value => $label)
