@@ -4,7 +4,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/daniellefence/inputs.svg?style=flat-square)](https://packagist.org/packages/daniellefence/inputs)
 ![GitHub Actions](https://github.com/daniellefence/inputs/actions/workflows/main.yml/badge.svg)
 
-The `daniellefence/inputs` package provides a set of customizable, Livewire-compatible input components for Laravel applications. It supports a wide variety of input types including text, email, tel, textarea, select dropdowns, and fulltext (Trix-based rich text editor). These inputs are styled using Tailwind CSS and are optimized to work seamlessly inside Livewire components.
+The `daniellefence/inputs` package provides a set of customizable, Livewire-compatible input components for Laravel applications. It supports a wide variety of input types including text, email, tel, number, url, date, time, textarea, select dropdowns, and fulltext (Trix-based rich text editor). These inputs are styled using Tailwind CSS and daisyUI (v5.0.43) and are optimized to work seamlessly inside Livewire components.
+
+Inputs now support optional sizing via the `size` prop. Accepted values are `xs`, `sm`, `md`, `lg`, and `xl`.
 
 ## Installation
 

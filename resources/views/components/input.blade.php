@@ -1,4 +1,15 @@
-@props(['variant' => 'text', 'name' => null, 'options' => [], 'label' => null])
+@props(['variant' => 'text', 'name' => null, 'options' => [], 'label' => null, 'size' => null])
+
+@php
+    $sizeClass = match ($size) {
+        'xs' => 'input-xs',
+        'sm' => 'input-sm',
+        'md' => 'input-md',
+        'lg' => 'input-lg',
+        'xl' => 'input-xl',
+        default => '',
+    };
+@endphp
 
 @if ($label)
     <label for="{{ $name }}" class="block mb-1 font-medium text-sm text-gray-700">{{ $label }}</label>
@@ -36,18 +47,28 @@
     @endpush
     @endonce
 
-    <div class="border rounded-md shadow-sm">
+    <div class="input input-bordered w-full {{ $sizeClass }} p-0">
         <input id="{{ $name }}" type="hidden" name="{{ $name }}" value="{{ is_array(old($name)) ? '' : old($name) }}" {{ $attributes }}>
-        <trix-editor input="{{ $name }}" class="min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
+        <trix-editor input="{{ $name }}" class="trix-content input input-bordered w-full {{ $sizeClass }} min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
     </div>
 @elseif ($variant === 'textarea')
-    <textarea name="{{ $name }}" {{ $attributes->merge(['class' => 'block w-full rounded-lg bg-white px-3 py-1.5 text-base text-gray-900 placeholder:text-gray-400 focus:outline-2 sm:text-sm/6']) }}></textarea>
+    <textarea name="{{ $name }}" {{ $attributes->merge(['class' => "textarea textarea-bordered w-full $sizeClass"]) }}></textarea>
 @elseif ($variant === 'select')
-    <select name="{{ $name }}" {{ $attributes->merge(['class' => 'form-select']) }}>
+    <select name="{{ $name }}" {{ $attributes->merge(['class' => "select select-bordered w-full $sizeClass"]) }}>
         @foreach ($options as $value => $label)
             <option value="{{ $value }}">{{ $label }}</option>
         @endforeach
     </select>
+@elseif ($variant === 'date')
+    <input type="date" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
+@elseif ($variant === 'time')
+    <input type="time" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
+@elseif ($variant === 'number')
+    <input type="number" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
+@elseif ($variant === 'tel')
+    <input type="tel" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
+@elseif ($variant === 'url')
+    <input type="url" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
 @else
-    <input type="{{ $variant }}" name="{{ $name }}" {{ $attributes->merge(['class' => 'form-input']) }}>
+    <input type="{{ $variant }}" name="{{ $name }}" {{ $attributes->merge(['class' => "input input-bordered w-full $sizeClass"]) }}>
 @endif
