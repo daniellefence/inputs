@@ -28,27 +28,25 @@
             .trix-button-group--file-tools{
                 display: none !important;
             }
-
         </style>
     @endpush
 
     @push('scripts')
         <script src="{{ url('/df-inputs/js') }}"></script>
-        <script>
-            document.addEventListener("trix-change", function(event) {
-                const input = event.target.input;
-                const model = input?.getAttribute('wire:model');
-                if (model && window.livewire) {
-                    const componentId = input.closest('[wire\\:id]')?.getAttribute('wire:id');
-                    window.livewire.find(componentId)?.set(model, input.value);
-                }
-            });
-        </script>
     @endpush
     @endonce
 
-    <div class=" {{ $sizeClass }} p-0">
-        <input id="{{ $name }}" type="hidden" name="{{ $name }}" value="{{ is_array(old($name)) ? '' : old($name) }}" {{ $attributes }}>
+    <div wire:ignore x-data x-init="
+        $nextTick(() => {
+            const input = document.getElementById('{{ $name }}');
+            const editor = input.nextElementSibling;
+
+            editor.addEventListener('trix-change', () => {
+                @this.set('{{ $attributes->wire('model')->value() }}', input.value);
+            });
+        })
+    " class="{{ $sizeClass }} p-0">
+        <input id="{{ $name }}" type="hidden" name="{{ $name }}" value="{{ old($name) }}" {{ $attributes }}>
         <trix-editor input="{{ $name }}" class="trix-content w-full {{ $sizeClass }} min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
     </div>
 @elseif ($variant === 'textarea')
