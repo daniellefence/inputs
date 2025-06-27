@@ -47,9 +47,9 @@
     @endpush
     @endonce
 
-    <div class="input input-bordered w-full {{ $sizeClass }} p-0">
+    <div class=" {{ $sizeClass }} p-0">
         <input id="{{ $name }}" type="hidden" name="{{ $name }}" value="{{ is_array(old($name)) ? '' : old($name) }}" {{ $attributes }}>
-        <trix-editor input="{{ $name }}" class="trix-content input input-bordered w-full {{ $sizeClass }} min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
+        <trix-editor input="{{ $name }}" class="trix-content w-full {{ $sizeClass }} min-h-[150px] bg-white border-none focus:outline-none focus:ring-0"></trix-editor>
     </div>
 @elseif ($variant === 'textarea')
     <textarea name="{{ $name }}" {{ $attributes->merge(['class' => "textarea textarea-bordered w-full $sizeClass"]) }}></textarea>
